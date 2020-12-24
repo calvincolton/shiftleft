@@ -12,10 +12,10 @@ const BookSearch = () => {
   useEffect(() => {
     const searchBooks = async () => {
       const convertedTitle = searchText.replace(/[\W_]+/g, "+").toLowerCase();
-      const openLibraryUrl = `http://openlibrary.org/search.json`
+      const openLibraryUrl = `http://openlibrary.org/search.json?q=${convertedTitle}&jscmd=data&limit=12`
       try {
         setFetching(true);
-        const res = await axios.get(`${openLibraryUrl}?q=${convertedTitle}&limit=12`)
+        const res = await axios.get(openLibraryUrl)
         setBooklist(res.data.docs);
         setFetching(false);
         setError(null);
@@ -50,7 +50,6 @@ const BookSearch = () => {
 
   return (
     <div className="book-search">
-      <h5>Search for books here!</h5>
       <div className="ui input">
         <input
           value={searchText}
