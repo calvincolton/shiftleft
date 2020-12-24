@@ -51,10 +51,12 @@ const BookSearch = () => {
   return (
     <div className="book-search">
       <h5>Search for books here!</h5>
-      <input
-        value={searchText}
-        onChange={e => setSearchText(e.target.value)}
-      />
+      <div className="ui input">
+        <input
+          value={searchText}
+          onChange={e => setSearchText(e.target.value)}
+        />
+      </div>
       {error && <div>Whoops! Something went wrong. Try refreshing.</div>}
       {renderBooklist()}
     </div>
