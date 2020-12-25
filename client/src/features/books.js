@@ -19,23 +19,17 @@ export const booksReducer = (state = initialState, action) => {
     case CLEAR_ALL_BOOKS:
       return { ...state, bookList: action.payload }
     case ADD_BOOK: {
-      console.log(action.payload);
-      return;
-      // return { ...state, bookList: [ ...state.bookList, action.payload ]}
-      // return { ...state, bookList: action.payload}
+      return { ...state, bookList: [ ...state.bookList, action.payload ]}
     }
     case DELETE_BOOK: {
-      console.log(action.payload);
-      return;
-      // const filteredBooks = state.bookList.filter(book => book.id !== action.payload.id)
-      // return { ...state, bookList: filteredBooks }
-      // return { ...state, bookList: action.payload}
+      const filteredBooks = state.bookList.filter(book => book.id !== action.payload)
+      return { ...state, bookList: filteredBooks }
     }
     case SELECT_BOOK: 
       return { ...state, currentBook: action.payload }
     case BOOKS_ERROR:
       const error = new Error(action.err);
-      return { error: error.message };
+      return { ...state, error: error.message };
     default:
       return state;
   }
@@ -66,8 +60,8 @@ export const addBook = (props, callback = () => {}) => async dispatch => {
 
 export const removeBook = (_bookId, callback = () => {}) => async dispatch => {
   try {
-    const res = await axios.delete(`${serverUrl}/books/${_bookId}`);
-    dispatch({ type: DELETE_BOOK, payload: res.data });
+    await axios.delete(`${serverUrl}/books/${_bookId}`);
+    dispatch({ type: DELETE_BOOK, payload: _bookId });
     callback();
   } catch (err) {
     dispatch({ type: BOOKS_ERROR, err });

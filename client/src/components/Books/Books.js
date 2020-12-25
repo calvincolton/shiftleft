@@ -6,8 +6,8 @@ import BookShelf from './BookShelf';
 const Books = () => {
   return (
     <div className="books">
-      <BookSearch />
       <BookShelf />
+      <BookSearch />
     </div>
   );
 }

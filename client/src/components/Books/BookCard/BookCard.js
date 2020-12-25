@@ -1,24 +1,42 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './book-card.css';
+import Image from '../../Image';
+import { addBook, removeBook } from '../../../features/books';
 
 const BookCard = (props) => {
-  const { title, author_name, isbn, id } = props.book;
-  const coverUrl = isbn && isbn.length && `http://covers.openlibrary.org/b/isbn/${isbn[0]}-M.jpg`
-
+  const { books, book, bookshelf, addBook, removeBook } = props;
+  const { title, author_name, ibsn, cover_i, id  } = book;
+  const imgSrc = cover_i 
+    ? `http://covers.openlibrary.org/b/id/${cover_i}-M.jpg`
+    : `http://covers.openlibrary.org/b/isbn/${ibsn}-M.jpg`
   const fallbackImgSrc = 'https://openlibrary.org/images/icons/avatar_book-sm.png'
+
+  const inBookshelf = books.bookList.findIndex(currentBook => currentBook.ibsn === ibsn) >= 0;
+
+  const checkAndAdd = () => {
+    if (inBookshelf) return;
+    addBook(book);
+  }
 
   return (
     <div className="book-card">
       <div className="image">
-        <img src={coverUrl} onError={e => e.target.src = fallbackImgSrc} alt="Book Cover" />
+        <Image src={imgSrc} fallbackSrc={fallbackImgSrc} alt="Book Cover" />
       </div>
       <div className="info">
         <h3>{title}</h3>
         <h5>{author_name}</h5>
-        <button className="ui primary button" onClick={() => props.addBook(id)}>Add</button>
+        {bookshelf
+          ? <button className="ui danger button" onClick={() => removeBook(id)}>Remove</button>
+          : <button className="ui primary button" onClick={checkAndAdd} disabled={inBookshelf}>Add</button>}
       </div>
     </div>
   );
 }
 
-export default BookCard;
+const mapStateToProps = ({ books }) => {
+  return { books };
+}
+
+export default connect(mapStateToProps, { addBook, removeBook })(BookCard);

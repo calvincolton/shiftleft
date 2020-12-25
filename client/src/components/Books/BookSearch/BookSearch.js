@@ -4,7 +4,7 @@ import './book-search.css';
 import BookCard from '../BookCard';
 
 const BookSearch = () => {
-  const [searchText, setSearchText] = useState('For Whom the Bell Tolls');
+  const [searchText, setSearchText] = useState('The Old Man By the Sea');
   const [fetching, setFetching] = useState(false);
   const [booklist, setBooklist] = useState([]);
   const [error, setError] = useState(null);
@@ -33,10 +33,13 @@ const BookSearch = () => {
   }, [searchText]);
 
   const renderBooklist = () => {
-    // cover image, book title, and author information.
     if (fetching) return <div>Loading...</div>;
-    if (booklist.length) {
-      const bookCards = booklist.map((book, i) => <BookCard key={i} book={book} />);
+    if (Array.isArray(booklist)) {
+      const bookCards = booklist.map(({ title, author_name, cover_i, isbn }) => {
+        let firstIsbn = Array.isArray(isbn) && isbn[0];
+        const bookProps = { title, author_name, ibsn: firstIsbn, cover_i };
+        return <BookCard key={firstIsbn} book={bookProps} bookshelf={false} />
+      });
       return (
         <div className="book-list">
           {bookCards}

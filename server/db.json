@@ -1,3 +1,13 @@
 {
-  "books": []
+  "books": [
+    {
+      "title": "The Old Man and the Sea",
+      "author_name": [
+        "Ernest Hemingway"
+      ],
+      "ibsn": "2070231704",
+      "cover_i": 426182,
+      "id": 1
+    }
+  ]
 }
