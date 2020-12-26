@@ -53,11 +53,13 @@ const BookSearch = () => {
 
   return (
     <div className="book-search">
-      <div className="ui input">
+      <h3>Search Your favorite books:</h3>
+      <div className="ui fluid icon input">
         <input
           value={searchText}
           onChange={e => setSearchText(e.target.value)}
         />
+        <i className="search icon"></i>
       </div>
       {error && <div>Whoops! Something went wrong. Try refreshing.</div>}
       {renderBooklist()}

@@ -19,6 +19,11 @@ const BookCard = (props) => {
     addBook(book);
   }
 
+  const stringifyAuthors = () => {
+    if (!author_name) return null;
+    return author_name.join(', ');
+  }
+
   return (
     <div className="book-card">
       <div className="image">
@@ -26,7 +31,7 @@ const BookCard = (props) => {
       </div>
       <div className="info">
         <h3>{title}</h3>
-        <h5>{author_name}</h5>
+        <h5>{stringifyAuthors()}</h5>
         {bookshelf
           ? <button className="ui danger button" onClick={() => removeBook(id)}>Remove</button>
           : <button className="ui primary button" onClick={checkAndAdd} disabled={inBookshelf}>Add</button>}

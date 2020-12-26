@@ -1,13 +1,25 @@
 {
   "books": [
     {
-      "title": "The Old Man and the Sea",
+      "title": "I, Claudius",
       "author_name": [
-        "Ernest Hemingway"
+        "Robert Graves"
       ],
-      "ibsn": "2070231704",
-      "cover_i": 426182,
+      "ibsn": "0736623892",
+      "cover_i": 4637143,
       "id": 1
+    },
+    {
+      "title": "Design Patterns",
+      "author_name": [
+        "Erich Gamma",
+        "John Vlissides",
+        "Richard Helm",
+        "Ralph Johnson"
+      ],
+      "ibsn": "9788131700075",
+      "cover_i": 6601119,
+      "id": 2
     }
   ]
 }

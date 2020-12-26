@@ -6,7 +6,11 @@
   "scripts": {
     "server": "npm run start --prefix server",
     "client": "npm run start --prefix client",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "init:root": "npm init",
+    "init:server": "npm init --prefix server",
+    "init:client": "npm init --prefix client",
+    "init": "npm-run-all init:*"
   },
   "author": "",
   "license": "ISC",
