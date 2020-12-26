@@ -7,15 +7,13 @@
     "server": "npm run start --prefix server",
     "client": "npm run start --prefix client",
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "init:root": "npm init",
-    "init:server": "npm init --prefix server",
-    "init:client": "npm init --prefix client",
-    "init": "npm-run-all init:*"
+    "postinstall": "(cd server && npm install); (cd client && npm install);"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^5.3.0",
-    "json-server": "^0.16.3"
+    "json-server": "^0.16.3",
+    "postinstall": "^0.7.0"
   }
 }
