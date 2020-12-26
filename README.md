@@ -2,11 +2,10 @@
 <p>A simple application made for Shiftleft.</p>
 <p>This application relies on json-server for making RESTful requests and persisting data.</p>
 
-<p>From the root directory,  run the following:<br />
+From the root directory,  run the following:<br />
 `npm install`<br />
 `npm run postinstall`<br />
 `npm start`<br />
-</p>
 
 <p>This should install the necessary node modules in the root, server, and client directories, and start the server and client servers.</p>
 
